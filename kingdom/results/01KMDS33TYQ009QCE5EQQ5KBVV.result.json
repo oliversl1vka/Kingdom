@@ -1,0 +1,7 @@
+{
+  "job_id": "01KMDS33TYQ009QCE5EQQ5KBVV",
+  "success": true,
+  "content": "```diff\n+```markdown\n+# Medieval Pixel Art Color Palette\n+\n+This palette defines 8 color ramps with 5 shades each, from darkest shadow to highlight.\n+\n+| Color Ramp   | Shade 1 (Darkest) | Shade 2 (Dark) | Shade 3 (Mid) | Shade 4 (Light) | Shade 5 (Highlight) |\n+|--------------|-------------------|----------------|---------------|-----------------|---------------------|\n+| Stone (Gray) | #2F2F2F           | #555555        | #7F7F7F       | #AAAAAA         | #D6D6D6             |\n+| Wood (Brown) | #3B2F1B           | #5C4827        | #7E6135       | #A07B44         | #C59E5A             |\n+| Gold (Yellow)| #6B5300           | #9B7A00        | #CBAE00       | #E6C933         | #FFEB66             |\n+| Crimson (Red)| #4B0000           | #7A0000        | #A80000       | #D63333         | #FF6666             |\n+| Royal Blue   | #001A4D           | #003080        | #0049B3       | #3366CC         | #6699FF             |\n+| Forest Green| #0B2F0B           | #1A4D1A        | #2E6B2E       | #4D8C4D         | #7AB07A             |\n+| Iron (Dark Gray)| #1A1A1A         | #333333        | #4D4D4D       | #666666         | #808080             |\n+| Parchment (Warm White)| #F5F0E6   | #F9F5EB        | #FBFAF0       | #FEFDFC         | #FFFFFF             |\n+```\n```",
+  "tokens_used": 886,
+  "finish_reason": "stop"
+}

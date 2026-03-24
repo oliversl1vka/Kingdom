@@ -1,0 +1,99 @@
+Title: Add multi-frame idle animation for all characters
+Finish reason: stop
+Content length: 3166
+
+=== FULL DIFF CONTENT ===
+--- a/packages/ui/src/engine/pixel-characters.ts
++++ b/packages/ui/src/engine/pixel-characters.ts
+@@ ... @@
+-export function drawCharacter(
+-  ctx: CanvasRenderingContext2D,
+-  type: CharacterType,
+-  state: AnimState,
+-  x: number, y: number, s: number, frame: number,
+-  agentId?: string,
+-  currentJob?: string | null,
+-) {
+-  const id = agentId ?? `${type}-${Math.round(x)}`;
+-  const sprite = SPRITE_MAP[type];
+-  const palette = PALETTE_MAP[type];
+-  const cs = getCS(id, x, y);
+-  const bob = state === 'idle' ? Math.sin(frame * 0.05) * 1.2 : state === 'working' ? Math.sin(frame * 0.1) * 0.8 : 0;
+-  const drawY = cs.y + bob;
+-  const flipH = cs.dir === 'left';
+-
+-  // Drop shadow
+-  ctx.fillStyle = 'rgba(0,0,0,0.3)';
+-  ctx.beginPath();
+-  ctx.ellipse(cs.x + 8 * s, drawY + sprite.length * s + 2, 7 * s, 2 * s, 0, 0, Math.PI * 2);
+-  ctx.fill();
+-
+-  drawSpriteDef(ctx, sprite, palette, cs.x, drawY, s, flipH);
+-
+-  // Walking leg overlay
+-  if (cs.moving) {
+-    const lp = Math.sin(cs.wf * 0.3) * 2 * s;
+-    ctx.fillStyle = palette.B;
+-    ctx.fillRect(cs.x + 4 * s, drawY + (sprite.length - 3) * s + lp, 3 * s, 2 * s);
+-    ctx.fillRect(cs.x + 9 * s, drawY + (sprite.length - 3) * s - lp, 3 * s, 2 * s);
+-  }
+-
+-  drawStatusEffect(ctx, state, cs.x, drawY, s, frame);
+-  if (agentId) {
+-    updateBubble(id, state, currentJob ?? null, frame);
+-    drawBubble(ctx, id, cs.x + 8 * s, drawY - 4);
+-  }
+-}
++export function drawCharacter(
++  ctx: CanvasRenderingContext2D,
++  type: CharacterType,
++  state: AnimState,
++  x: number, y: number, s: number, frame: number,
++  agentId?: string,
++  currentJob?: string | null,
++) {
++  const id = agentId ?? `${type}-${Math.round(x)}`;
++  const palette = PALETTE_MAP[type];
++  const cs = getCS(id, x, y);
++  const flipH = cs.dir === 'left';
++
++  // Determine sprite frame for idle animation
++  let sprite: string[];
++  if (state === 'idle') {
++    const idleFrames = IDLE_FRAMES_MAP[type];
++    if (idleFrames && idleFrames.length > 0) {
++      const frameIndex = Math.floor(frame / IDLE_FRAME_DURATION) % idleFrames.length;
++      sprite = idleFrames[frameIndex];
++    } else {
++      sprite = SPRITE_MAP[type];
++    }
++  } else {
++    sprite = SPRITE_MAP[type];
++  }
++
++  // Bobbing effect for idle and working states
++  const bob = state === 'idle' ? Math.sin(frame * 0.05) * 1.2 : state === 'working' ? Math.sin(frame * 0.1) * 0.8 : 0;
++  const drawY = cs.y + bob;
++
++  // Drop shadow
++  ctx.fillStyle = 'rgba(0,0,0,0.3)';
++  ctx.beginPath();
++  ctx.ellipse(cs.x + 8 * s, drawY + sprite.length * s + 2, 7 * s, 2 * s, 0, 0, Math.PI * 2);
++  ctx.fill();
++
++  drawSpriteDef(ctx, sprite, palette, cs.x, drawY, s, flipH);
++
++  // Walking leg overlay
++  if (cs.moving) {
++    const lp = Math.sin(cs.wf * 0.3) * 2 * s;
++    ctx.fillStyle = palette.B;
++    ctx.fillRect(cs.x + 4 * s, drawY + (sprite.length - 3) * s + lp, 3 * s, 2 * s);
++    ctx.fillRect(cs.x + 9 * s, drawY + (sprite.length - 3) * s - lp, 3 * s, 2 * s);
++  }
++
++  drawStatusEffect(ctx, state, cs.x, drawY, s, frame);
++  if (agentId) {
++    updateBubble(id, state, currentJob ?? null, frame);
++    drawBubble(ctx, id, cs.x + 8 * s, drawY - 4);
++  }
++}

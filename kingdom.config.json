@@ -1,0 +1,66 @@
+{
+  "project_name": "KingdomOS Frontend Transformation",
+  "providers": {
+    "lmstudio": {
+      "endpoint": "http://localhost:1234",
+      "priority_order": 1,
+      "enabled": true
+    }
+  },
+  "tiers": {
+    "king": {
+      "model": "gpt-4.1-mini",
+      "max_retries": 3,
+      "timeout_seconds": 120
+    },
+    "nobility": {
+      "model": "gpt-4.1-mini",
+      "max_retries": 3,
+      "timeout_seconds": 90
+    },
+    "knight": {
+      "model": "gpt-4.1-mini",
+      "max_retries": 3,
+      "timeout_seconds": 120
+    },
+    "squire": {
+      "model": "gpt-4.1-mini",
+      "max_retries": 3,
+      "timeout_seconds": 60
+    },
+    "healer": {
+      "model": "gpt-4.1-mini",
+      "retries": 3,
+      "timeout": 120
+    },
+    "sentinel": {
+      "model": "gpt-4.1-mini",
+      "retries": 3,
+      "timeout": 120
+    },
+    "scribe": {
+      "model": "gpt-4.1-mini",
+      "retries": 3,
+      "timeout": 120
+    },
+    "judge": {
+      "model": "gpt-4.1-mini",
+      "retries": 3,
+      "timeout": 120
+    },
+    "blacksmith": {
+      "model": "gpt-4.1-mini",
+      "retries": 3,
+      "timeout": 120
+    }
+  },
+  "retention": {
+    "log_retention_days": 7,
+    "heartbeat_retention_days": 3
+  },
+  "token_engine": {
+    "default_safety_margin_percent": 0.12,
+    "max_concurrent_checks": 10
+  },
+  "workspace_path": "C:\\Users\\KingdomOS\\Kingdom"
+}

@@ -1,0 +1,7 @@
+{
+  "job_id": "01KMDPNY0MRVZ9DYENGYX6RCSY",
+  "success": true,
+  "content": "```diff\n--- packages/core/src/config.ts\n+++ packages/core/src/config.ts\n@@ -1,0 +1,2 @@\n+// TODO: Add validation for workspace_path\n+\n```",
+  "tokens_used": 412,
+  "finish_reason": "stop"
+}

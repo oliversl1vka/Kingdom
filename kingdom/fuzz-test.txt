@@ -1,0 +1,1 @@
+applyDiff: success=false applied= failed=packages/ui/src/engine/pixel-characters.ts errors=Failed to apply patch to packages/ui/src/engine/pixel-characters.ts: hunks did not apply cleanly (34ms)

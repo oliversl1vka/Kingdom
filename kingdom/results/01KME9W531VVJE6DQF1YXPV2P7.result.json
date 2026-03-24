@@ -1,0 +1,7 @@
+{
+  "job_id": "01KME9W531VVJE6DQF1YXPV2P7",
+  "success": true,
+  "content": "[\n  {\n    \"task\": \"Design unified castle floor plan layout\",\n    \"context_refs\": [\n      \"packages/ui/src/engine/pixel-characters.ts lines 1-50\"\n    ],\n    \"description\": \"Create a structured markdown document detailing the castle floor plan with all 9 rooms positioned according to the specified layout. Include grid coordinates for each room's dimensions and define corridor connections between adjacent rooms.\",\n    \"acceptance_criteria\": [\n      \"All 9 rooms (Throne Room, Great Hall, Workshop, Library, War Room, Healing Chamber, Watchtower, Scribe Study, Dungeon) are positioned in the layout as specified.\",\n      \"Each room has dimensions specified as grid coordinates (e.g., x1,y1 to x2,y2).\",\n      \"Corridor connections are mapped between all adjacent rooms, reflecting possible movement paths.\"\n    ],\n    \"token_budget\": 3000,\n    \"output_format\": \"Markdown with structured sections for Rooms and Corridors\",\n    \"notes\": \"Use a grid coordinate system for room dimensions, e.g., (x_start, y_start) to (x_end, y_end). Position rooms as per user description: Throne Room top center largest, Great Hall center, Workshop bottom-left, Library left-center, War Room right-center, Healing Chamber top-right, Watchtower top-left, Scribe Study bottom-right, Dungeon bottom-center.\"\n  }\n]",
+  "tokens_used": 1644,
+  "finish_reason": "stop"
+}

@@ -1,0 +1,7 @@
+{
+  "job_id": "01KMBT1NM8V0V7ARZQE5WRPY8V",
+  "success": true,
+  "content": "```json\n{\n  \"task\": \"Create unified castle floor plan layout\",\n  \"description\": \"Replace rigid grid with organic castle floor plan. Throne Room at top, connected by hallways. Doorways between rooms.\",\n  \"acceptance_criteria\": [\n    \"Rooms connected by corridors\",\n    \"Castle floor plan layout\",\n    \"Doorways visible\"\n  ],\n  \"context_references\": [\n    \"castle_layout_design.md\",\n    \"floor_plan_rendering_spec.md\",\n    \"existing_grid_floor_code.py\"\n  ],\n  \"token_budget\": 8000,\n  \"delegation\": {\n    \"assign_to\": \"Knight-FloorPlanDesigner\",\n    \"instructions\": \"Decompose the epic into tasks: (1) design organic layout data structure, (2) implement throne room placement at top, (3) create corridor connections between rooms, (4) render doorways visibly. Deliver code changes as a unified diff with clear file paths.\"\n  }\n}\n```",
+  "tokens_used": 634,
+  "finish_reason": "stop"
+}

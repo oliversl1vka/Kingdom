@@ -1,0 +1,8 @@
+Objective: 01KMDWST3K2DREW5ARN5CHH7WY
+Model invocations: 1
+Job 0CVBWD: tokens=4799, reason=stop
+
+Diff results: 0
+
+Total diffs applied: 0/0
+Task statuses: {"queued":20,"running":1}

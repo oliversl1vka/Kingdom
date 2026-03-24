@@ -1,0 +1,20 @@
+MZ7402 | completed | has_diff | Redesign character rendering with proper pixel art
+78MB94 | completed | has_diff | Add multi-frame idle animation for all characters
+4F96M8 | completed | has_diff | Implement character walking animation system
+QK7B2P | completed | has_diff | Create detailed tilemap-based room floor rendering
+7RJ991 | completed | has_diff | Improve stone wall rendering with depth and detail
+TP7PP0 | completed | has_diff | Add detailed furniture sprites for each room
+2JW017 | cancelled | none | Implement proper lighting system with torch glow
+8RS39V | cancelled | none | Add character speech and thought bubbles
+WS2FF7 | completed | has_diff | Create unified castle floor plan layout
+NVRWGY | cancelled | none | Add wall decorations and environmental props
+RNSMGT | cancelled | none | Implement proper pixel art color palette system
+9G8MVC | cancelled | none | Add animated environmental effects
+Y01J65 | cancelled | none | Implement character-furniture interaction system
+T1MYXT | cancelled | none | Add status-based character visual effects
+F4F0BR | cancelled | none | Create character outline and shadow system
+96957A | cancelled | none | Add room transition animations
+38KZX4 | cancelled | none | Implement character info tooltip on hover
+98AMGB | cancelled | none | Add ambient sound indicators (visual)
+GZD0RE | cancelled | none | Create minimap overview panel
+3VZGQX | cancelled | none | Add day/night cycle visual theme

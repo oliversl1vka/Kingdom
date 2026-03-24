@@ -1,0 +1,7 @@
+{
+  "job_id": "01KMDPTNZV9Y8TCVX9SCPT9DRW",
+  "success": true,
+  "content": "```diff\n--- packages/core/src/ulid.ts\n+++ packages/core/src/ulid.ts\n@@ -1,6 +1,11 @@\n+/**\n+ * Generates a ULID (Universally Unique Lexicographically Sortable Identifier).\n+ * ULIDs are 26-character, case-insensitive strings that encode a timestamp and randomness,\n+ * providing unique and sortable IDs.\n+ * @returns {string} A new ULID string.\n+ */\n export function generateUlid(): string {\n   // implementation details...\n }\n```",
+  "tokens_used": 509,
+  "finish_reason": "stop"
+}

@@ -1,0 +1,26 @@
+=== Run 8 Status ===
+Job statuses: [{"status":"completed","count":15},{"status":"failed-timeout","count":1},{"status":"queued","count":2},{"status":"running","count":2}]
+Task statuses: [{"status":"completed","count":2},{"status":"completed-with-warnings","count":13},{"status":"failed-timeout","count":1},{"status":"queued","count":2},{"status":"running","count":2}]
+File: 2036 lines | Backup: 1666 lines
+
+=== Jobs ===
+  1V654R [QUEUED      ] Create minimap overview panel
+  X6PW4P [QUEUED      ] Add day/night cycle visual theme
+  6MMVYM [FAILED-TIMEOUT] Redesign character rendering with proper pixel art prop
+  NWY307 [DIFF_FAIL   ] Add multi-frame idle animation for all characters
+  38W59P [DIFF_FAIL   ] Implement character walking animation system
+  W0QHG6 [DIFF_OK     ] Create detailed tilemap-based room floor rendering
+  X5S3NE [DIFF_FAIL   ] Improve stone wall rendering with depth and detail
+  KHTTA0 [DIFF_FAIL   ] Add detailed furniture sprites for each room
+  7KBMQA [DIFF_FAIL   ] Implement proper lighting system with torch glow
+  7S82QG [DIFF_FAIL   ] Add character speech and thought bubbles
+  KK3KFE [RUNNING     ] Create unified castle floor plan layout
+  YZ1AA5 [DIFF_FAIL   ] Add wall decorations and environmental props
+  GPPS8N [DIFF_FAIL   ] Implement proper pixel art color palette system
+  VK888D [DIFF_FAIL   ] Add animated environmental effects
+  97SV5X [DIFF_OK     ] Implement character-furniture interaction system
+  DQ3NFQ [DIFF_FAIL   ] Add status-based character visual effects
+  SV9XFC [DIFF_FAIL   ] Create character outline and shadow system
+  13MJQM [DIFF_FAIL   ] Add room transition animations
+  CWG1QD [DIFF_FAIL   ] Implement character info tooltip on hover
+  S7QSKY [RUNNING     ] Add ambient sound indicators (visual)

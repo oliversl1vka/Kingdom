@@ -1,0 +1,118 @@
+{
+  "statuses": [
+    {
+      "status": "completed",
+      "c": 13
+    },
+    {
+      "status": "queued",
+      "c": 5
+    },
+    {
+      "status": "running",
+      "c": 2
+    }
+  ],
+  "recent_events": [
+    {
+      "jid": "RRKFSR",
+      "event_type": "task_transition",
+      "details": "{\"from\":\"preparing-context\",\"to\":\"awaiting-budget-check\"}"
+    },
+    {
+      "jid": "RRKFSR",
+      "event_type": "task_transition",
+      "details": "{\"from\":\"awaiting-budget-check\",\"to\":\"running\"}"
+    },
+    {
+      "jid": "RRKFSR",
+      "event_type": "task_transition",
+      "details": "{\"from\":\"queued\",\"to\":\"preparing-context\"}"
+    },
+    {
+      "jid": "6QD7GH",
+      "event_type": "task_transition",
+      "details": "{\"from\":\"awaiting-budget-check\",\"to\":\"running\"}"
+    },
+    {
+      "jid": "6QD7GH",
+      "event_type": "task_transition",
+      "details": "{\"from\":\"preparing-context\",\"to\":\"awaiting-budget-check\"}"
+    },
+    {
+      "jid": "6QD7GH",
+      "event_type": "task_transition",
+      "details": "{\"from\":\"queued\",\"to\":\"preparing-context\"}"
+    },
+    {
+      "jid": "XFWPMC",
+      "event_type": "task_transition",
+      "details": "{\"from\":\"running\",\"to\":\"completed-with-warnings\",\"diff_applied\":false}"
+    },
+    {
+      "jid": "XFWPMC",
+      "event_type": "review_decision",
+      "details": "{\"verdict\":\"approved\"}"
+    },
+    {
+      "jid": "XFWPMC",
+      "event_type": "model_invocation",
+      "details": "{\"model\":\"gpt-4.1-mini\",\"prompt_tokens\":2412,\"completion_tokens\":4938,\"total_tokens\":7350,\"finish_reason\":\"stop\"}"
+    },
+    {
+      "jid": "XFWPMC",
+      "event_type": "task_transition",
+      "details": "{\"from\":\"awaiting-budget-check\",\"to\":\"running\"}"
+    },
+    {
+      "jid": "XFWPMC",
+      "event_type": "task_transition",
+      "details": "{\"from\":\"preparing-context\",\"to\":\"awaiting-budget-check\"}"
+    },
+    {
+      "jid": "XFWPMC",
+      "event_type": "task_transition",
+      "details": "{\"from\":\"queued\",\"to\":\"preparing-context\"}"
+    },
+    {
+      "jid": "NXX40W",
+      "event_type": "task_transition",
+      "details": "{\"from\":\"running\",\"to\":\"completed-with-warnings\",\"diff_applied\":false}"
+    },
+    {
+      "jid": "NXX40W",
+      "event_type": "review_decision",
+      "details": "{\"verdict\":\"approved\"}"
+    },
+    {
+      "jid": "NXX40W",
+      "event_type": "model_invocation",
+      "details": "{\"model\":\"gpt-4.1-mini\",\"prompt_tokens\":2524,\"completion_tokens\":1834,\"total_tokens\":4358,\"finish_reason\":\"stop\"}"
+    },
+    {
+      "jid": "NXX40W",
+      "event_type": "task_transition",
+      "details": "{\"from\":\"awaiting-budget-check\",\"to\":\"running\"}"
+    },
+    {
+      "jid": "NXX40W",
+      "event_type": "task_transition",
+      "details": "{\"from\":\"preparing-context\",\"to\":\"awaiting-budget-check\"}"
+    },
+    {
+      "jid": "NXX40W",
+      "event_type": "task_transition",
+      "details": "{\"from\":\"queued\",\"to\":\"preparing-context\"}"
+    },
+    {
+      "jid": "Q13Q96",
+      "event_type": "task_transition",
+      "details": "{\"from\":\"running\",\"to\":\"completed\",\"diff_applied\":true}"
+    },
+    {
+      "jid": "Q13Q96",
+      "event_type": "review_decision",
+      "details": "{\"verdict\":\"approved\"}"
+    }
+  ]
+}

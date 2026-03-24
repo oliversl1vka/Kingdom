@@ -1,0 +1,58 @@
+
+=== NWY307: Add multi-frame idle animation for all characters ===
+Task status: completed-with-warnings
+Has content: true
+Content length: 3166
+Finish reason: stop
+Content preview: --- a/packages/ui/src/engine/pixel-characters.ts
++++ b/packages/ui/src/engine/pixel-characters.ts
+@@ ... @@
+-export function drawCharacter(
+-  ctx: CanvasRenderingContext2D,
+-  type: CharacterType,
+-  state: AnimState,
+-  x: number, y: number, s: number, frame: number,
+-  agentId?: string,
+-  currentJob?: string | null,
+-) {
+-  const id = agentId ?? `${type}-${Math.round(x)}`;
+-  const sprite = SPRITE_MAP[type];
+-  const palette = PALETTE_MAP[type];
+-  const cs = getCS(id, x, y);
+-  const bob = 
+
+=== 38W59P: Implement character walking animation system ===
+Task status: completed-with-warnings
+Has content: true
+Content length: 6810
+Finish reason: stop
+Content preview: --- a/packages/ui/src/engine/pixel-characters.ts
++++ b/packages/ui/src/engine/pixel-characters.ts
+@@ ... @@
++// ─── Walking animation frames ──────────────────────────────────────
++
++const KING_WALK_FRAMES = [
++  KING_SPRITE.map((line, i) => {
++    if (i >= 15 && i <= 17) {
++      // Move legs slightly forward/back for walk cycle
++      return line.replace(/p/g, 'P').replace(/P/g, 'p');
++    }
++    return line;
++  }),
++  KING_SPRITE.map((line, i) => {
++    if (i >= 15 && i <= 17) {
++      return
+
+=== X5S3NE: Improve stone wall rendering with depth and detail ===
+Task status: completed-with-warnings
+Has content: true
+Content length: 4197
+Finish reason: stop
+Content preview: --- a/packages/ui/src/engine/pixel-characters.ts
++++ b/packages/ui/src/engine/pixel-characters.ts
+@@ ... @@
+-function drawTiledWall(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, type: CharacterType) {
+-  const wc: Record<CharacterType, [string, string, string]> = {
+-    king: ['#3e3650', '#484060', '#353048'], nobility: ['#3a3850', '#44405a', '#323048'],
+-    knight: ['#384050', '#404858', '#303848'], squire: ['#384038', '#404840', '#303830'],
+-    healer: ['#303850'

@@ -1,0 +1,7 @@
+{
+  "job_id": "01KMDQ24H04P0EA5E4J9848E1A",
+  "success": true,
+  "content": "```diff\n--- packages/core/src/ulid.ts\n+++ packages/core/src/ulid.ts\n@@ -1,6 +1,11 @@\n+/**\n+ * Generates a new ULID (Universally Unique Lexicographically Sortable Identifier).\n+ * ULIDs are unique identifiers that are sortable by generation time.\n+ *\n+ * @returns {string} A new ULID string.\n+ */\n export function generateUlid(): string {\n   // function implementation\n }\n```",
+  "tokens_used": 498,
+  "finish_reason": "stop"
+}

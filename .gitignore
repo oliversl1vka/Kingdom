@@ -36,3 +36,12 @@ coverage/
 # Logs
 *.log
 npm-debug.log*
+
+# Backup files
+*.old.ts
+*.old.tsx
+*.ts.bak
+*.tsx.bak
+sprite-preview.bmp
+
+.credentials.enc

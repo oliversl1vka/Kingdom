@@ -1,0 +1,7 @@
+{
+  "job_id": "01KMDSRE4QVC5J26RPPBRE5NQT",
+  "success": true,
+  "content": "```diff\n+```markdown\n+# Medieval Pixel Art Color Palette\n+\n+This palette defines unified color ramps for pixel art with 5 shades each: darkest shadow, dark, mid, light, and highlight.\n+\n+| Color Ramp  | Shade 1 (Darkest) | Shade 2 (Dark) | Shade 3 (Mid) | Shade 4 (Light) | Shade 5 (Highlight) |\n+|-------------|-------------------|----------------|---------------|-----------------|---------------------|\n+| Stone       | #2F2F2F           | #585858        | #8A8A8A       | #BFBFBF         | #E6E6E6             |\n+| Wood        | #4B2E0E           | #7A4F1A        | #A6783D       | #CBA663         | #E8D6A1             |\n+| Gold        | #6B5200           | #A07A00        | #D1AA00       | #F7D42A         | #FFF3A1             |\n+| Crimson     | #5A0E0E           | #8C1B1B        | #C03939       | #E57373         | #F9BABA             |\n+| Royal Blue  | #0E1A5A           | #1B2E8C        | #395AC0       | #7394E5         | #BADAFF             |\n+| Forest Green| #0E4B1B           | #1B7A3A        | #3DA678       | #73CBA6         | #A1E8D6             |\n+| Iron        | #1C1C1C           | #3B3B3B        | #5A5A5A       | #8A8A8A         | #BFBFBF             |\n+| Parchment   | #F7EEDC           | #FAF3E6        | #FCF8F0       | #FEFDF9         | #FFFFFF             |\n+```\n```",
+  "tokens_used": 908,
+  "finish_reason": "stop"
+}

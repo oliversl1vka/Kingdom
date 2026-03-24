@@ -1,0 +1,162 @@
+[
+  {
+    "jid": "QFDA4N",
+    "status": "completed",
+    "started": "2026-03-23T21:33:44.582Z",
+    "heartbeat": "2026-03-23T21:35:01.722Z",
+    "result": "yes",
+    "title": "Redesign character rendering with proper pixel art"
+  },
+  {
+    "jid": "K4NATW",
+    "status": "completed",
+    "started": "2026-03-23T21:35:02.734Z",
+    "heartbeat": "2026-03-23T21:35:56.867Z",
+    "result": "yes",
+    "title": "Add multi-frame idle animation for all characters"
+  },
+  {
+    "jid": "5YVGNZ",
+    "status": "completed",
+    "started": "2026-03-23T21:35:56.894Z",
+    "heartbeat": "2026-03-23T21:36:37.833Z",
+    "result": "yes",
+    "title": "Implement character walking animation system"
+  },
+  {
+    "jid": "0BGTC0",
+    "status": "completed",
+    "started": "2026-03-23T21:36:38.995Z",
+    "heartbeat": "2026-03-23T21:37:08.458Z",
+    "result": "yes",
+    "title": "Create detailed tilemap-based room floor rendering"
+  },
+  {
+    "jid": "S827VC",
+    "status": "completed",
+    "started": "2026-03-23T21:37:09.093Z",
+    "heartbeat": "2026-03-23T21:37:30.143Z",
+    "result": "yes",
+    "title": "Improve stone wall rendering with depth and detail"
+  },
+  {
+    "jid": "GDGBAS",
+    "status": "completed",
+    "started": "2026-03-23T21:37:30.192Z",
+    "heartbeat": "2026-03-23T21:38:14.393Z",
+    "result": "yes",
+    "title": "Add detailed furniture sprites for each room"
+  },
+  {
+    "jid": "J6X6N8",
+    "status": "completed",
+    "started": "2026-03-23T21:38:15.296Z",
+    "heartbeat": "2026-03-23T21:38:30.718Z",
+    "result": "yes",
+    "title": "Implement proper lighting system with torch glow"
+  },
+  {
+    "jid": "F7KEJV",
+    "status": "completed",
+    "started": "2026-03-23T21:38:33.307Z",
+    "heartbeat": "2026-03-23T21:39:26.961Z",
+    "result": "yes",
+    "title": "Add character speech and thought bubbles"
+  },
+  {
+    "jid": "XPV2P7",
+    "status": "completed",
+    "started": "2026-03-23T21:37:30.200Z",
+    "heartbeat": "2026-03-23T21:37:38.016Z",
+    "result": "yes",
+    "title": "Create unified castle floor plan layout"
+  },
+  {
+    "jid": "Q13Q96",
+    "status": "completed",
+    "started": "2026-03-23T21:39:27.345Z",
+    "heartbeat": "2026-03-23T21:39:57.357Z",
+    "result": "yes",
+    "title": "Add wall decorations and environmental props"
+  },
+  {
+    "jid": "M4P5R3",
+    "status": "completed",
+    "started": "2026-03-23T21:38:15.310Z",
+    "heartbeat": "2026-03-23T21:38:23.743Z",
+    "result": "yes",
+    "title": "Implement proper pixel art color palette system"
+  },
+  {
+    "jid": "NXX40W",
+    "status": "completed",
+    "started": "2026-03-23T21:39:57.376Z",
+    "heartbeat": "2026-03-23T21:40:24.805Z",
+    "result": "yes",
+    "title": "Add animated environmental effects"
+  },
+  {
+    "jid": "XFWPMC",
+    "status": "completed",
+    "started": "2026-03-23T21:40:27.417Z",
+    "heartbeat": "2026-03-23T21:41:35.846Z",
+    "result": "yes",
+    "title": "Implement character-furniture interaction system"
+  },
+  {
+    "jid": "6QD7GH",
+    "status": "completed",
+    "started": "2026-03-23T21:41:36.539Z",
+    "heartbeat": "2026-03-23T21:42:02.159Z",
+    "result": "yes",
+    "title": "Add status-based character visual effects"
+  },
+  {
+    "jid": "CT7EJJ",
+    "status": "completed",
+    "started": "2026-03-23T21:42:03.762Z",
+    "heartbeat": "2026-03-23T21:42:21.748Z",
+    "result": "yes",
+    "title": "Create character outline and shadow system"
+  },
+  {
+    "jid": "ZF01EV",
+    "status": "completed",
+    "started": "2026-03-23T21:42:24.718Z",
+    "heartbeat": "2026-03-23T21:42:44.481Z",
+    "result": "yes",
+    "title": "Add room transition animations"
+  },
+  {
+    "jid": "RRKFSR",
+    "status": "completed",
+    "started": "2026-03-23T21:41:36.544Z",
+    "heartbeat": "2026-03-23T21:42:27.052Z",
+    "result": "yes",
+    "title": "Implement character info tooltip on hover"
+  },
+  {
+    "jid": "8Q9Z8W",
+    "status": "completed",
+    "started": "2026-03-23T21:42:45.754Z",
+    "heartbeat": "2026-03-23T21:43:04.710Z",
+    "result": "yes",
+    "title": "Add ambient sound indicators (visual)"
+  },
+  {
+    "jid": "E05RV2",
+    "status": "running",
+    "started": "2026-03-23T21:43:06.786Z",
+    "heartbeat": "2026-03-23T21:43:56.826Z",
+    "result": "no",
+    "title": "Create minimap overview panel"
+  },
+  {
+    "jid": "1A78AB",
+    "status": "completed",
+    "started": "2026-03-23T21:42:27.715Z",
+    "heartbeat": "2026-03-23T21:42:40.028Z",
+    "result": "yes",
+    "title": "Add day/night cycle visual theme"
+  }
+]
