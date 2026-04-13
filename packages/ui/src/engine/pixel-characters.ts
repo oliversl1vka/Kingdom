@@ -512,42 +512,85 @@ export function getCS(id: string, sx: number, sy: number): CharState {
   return charStates.get(id)!;
 }
 
-interface SmoothState { x: number; y: number; tx: number; ty: number; }
+interface SmoothState { x: number; y: number; tx: number; ty: number; prevX: number; prevY: number; }
 const sStates = new Map<string, SmoothState>();
 
+// Threshold (px) below which we consider the character "arrived"
+const ARRIVE_THRESHOLD = 2;
+// Lerp speed — higher = snappier; lower = floatier
+const LERP_SPEED = 0.10;
+// Walk-frame advance rate (lower = slower leg cycle — pixel-art-animator "10 FPS classic" cadence)
+const WF_RATE = 0.15;
+
+/**
+ * Unified movement update.
+ *
+ * Smoothly interpolates position toward the target (lerp) **and** drives
+ * the CharState movement fields (`moving`, `dir`, `wf`) that drawCharacter
+ * depends on for sprite selection and orientation.
+ *
+ * Optionally accepts `roomBounds` so that idle characters perform
+ * micro-wandering within their room — avoids the "dead statue" look
+ * (pixel-art-animator: "2-frame idle breathing" / subtle movement).
+ */
 export function updateCharacterPosition(
   id: string, cx: number, cy: number,
   tx: number, ty: number, _dt: number,
+  roomBounds?: { x: number; y: number; w: number; h: number },
 ): { x: number; y: number } {
+  /* ---- smooth state (position interpolation) ---- */
   let s = sStates.get(id);
-  if (!s) { s = { x: cx, y: cy, tx, ty }; sStates.set(id, s); }
-  s.tx = tx; s.ty = ty;
-  s.x = lerp(s.x, tx, 0.08);
-  s.y = lerp(s.y, ty, 0.08);
-  return { x: s.x, y: s.y };
-}
+  if (!s) { s = { x: cx, y: cy, tx, ty, prevX: cx, prevY: cy }; sStates.set(id, s); }
 
-function updateMovement(cs: CharState, bounds: { x: number; y: number; w: number; h: number }) {
-  const dx = cs.tx - cs.x, dy = cs.ty - cs.y;
+  s.prevX = s.x;
+  s.prevY = s.y;
+  s.tx = tx; s.ty = ty;
+  s.x = lerp(s.x, tx, LERP_SPEED);
+  s.y = lerp(s.y, ty, LERP_SPEED);
+
+  /* ---- character state (animation / direction) ---- */
+  const cs = getCS(id, cx, cy);
+
+  const dx = s.tx - s.x;
+  const dy = s.ty - s.y;
   const dist = Math.sqrt(dx * dx + dy * dy);
-  if (dist > 2) {
+
+  if (dist > ARRIVE_THRESHOLD) {
+    // Character is actively moving toward target
     cs.moving = true;
-    const spd = 0.4;
-    cs.x += (dx / dist) * spd;
-    cs.y += (dy / dist) * spd;
-    cs.wf = (cs.wf + 1) % 4;
-    cs.dir = Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'down' : 'up');
+
+    // Direction — favour the dominant axis (pixel-art 4-dir convention)
+    cs.dir = Math.abs(dx) > Math.abs(dy)
+      ? (dx > 0 ? 'right' : 'left')
+      : (dy > 0 ? 'down' : 'up');
+
+    // Walk-frame counter — advance proportional to actual distance covered
+    // Uses pixel-art-animator "classic 10 FPS" cadence mapped through WF_RATE
+    const moved = Math.sqrt((s.x - s.prevX) ** 2 + (s.y - s.prevY) ** 2);
+    cs.wf = (cs.wf + moved * WF_RATE) % 4;
   } else {
-    cs.moving = false;
-    cs.wf = 0;
-    cs.idle--;
-    if (cs.idle <= 0) {
-      const mx = bounds.w * 0.15, my = bounds.h * 0.2;
-      cs.tx = bounds.x + mx + Math.random() * (bounds.w - mx * 2);
-      cs.ty = bounds.y + my + Math.random() * (bounds.h - my * 2);
-      cs.idle = 120 + Math.random() * 300;
+    // Arrived — settle into idle
+    if (cs.moving) {
+      // Follow-through: keep last direction so the character faces where it walked
+      cs.moving = false;
+      cs.wf = 0;
+    }
+
+    // Idle micro-wandering within room bounds
+    // (pixel-art-animator "breathing idle" — subtle positional drift keeps life)
+    if (roomBounds) {
+      cs.idle--;
+      if (cs.idle <= 0) {
+        const mx = roomBounds.w * 0.12;
+        const my = roomBounds.h * 0.15;
+        s.tx = roomBounds.x + mx + Math.random() * (roomBounds.w - mx * 2);
+        s.ty = roomBounds.y + my + Math.random() * (roomBounds.h - my * 2);
+        cs.idle = 150 + Math.random() * 350;
+      }
     }
   }
+
+  return { x: s.x, y: s.y };
 }
 
 // ─── Sprite Drawing ────────────────────────────────────────────────
@@ -741,6 +784,7 @@ export function drawCharacter(
   const cs = getCS(id, x, y);
 
   const bob =
+    cs.moving ? Math.sin(cs.wf * Math.PI * 0.5) * 1.2 :
     state === 'idle' ? Math.sin(frame * 0.04) * 1.0 :
     (state === 'working' || state === 'running') ? Math.sin(frame * 0.08) * 0.6 : 0;
   const drawY = cs.y + bob;
@@ -748,7 +792,7 @@ export function drawCharacter(
 
   let sp: string[];
   if (cs.moving) {
-    sp = WALK[type][cs.wf % 4];
+    sp = WALK[type][Math.floor(cs.wf) % 4];
   } else {
     sp = IDLE[type][Math.floor(frame / IDLE_DUR) % 4];
   }

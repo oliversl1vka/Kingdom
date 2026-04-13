@@ -207,22 +207,32 @@ export function AgentsScene() {
         const overflow = tierAgents.length - visible.length;
         const charScale = Math.min(2.8, roomW / 80);
 
+        // Room bounds for idle micro-wandering (characters stay inside their room)
+        const roomBounds = { x: rx, y: roomTop, w: roomW, h: roomH };
+
         visible.forEach((agent, i) => {
           let targetX: number;
           let targetY: number;
 
-          if (agent.state === 'running') {
+          if (agent.state === 'running' || agent.state === 'working') {
+            // Active agents head to their workstation
             const wsPos = getWorkstationPosition(slot.tier);
             targetX = rx + roomW * wsPos.x;
             targetY = roomTop + roomH * wsPos.y;
           } else {
+            // Idle agents spread out — initial target only; micro-wandering takes over
             const spreadX = roomW * 0.7;
             targetX = rx + roomW * 0.15 + i * Math.min(55, spreadX / Math.max(1, visible.length));
             targetY = roomTop + roomH * 0.48;
           }
 
           const cs = getCS(agent.id, targetX, targetY);
-          const updatedPos = updateCharacterPosition(agent.id, cs.x, cs.y, targetX, targetY, dt);
+          // Pass roomBounds so idle characters perform micro-wandering
+          const isIdle = agent.state !== 'running' && agent.state !== 'working';
+          const updatedPos = updateCharacterPosition(
+            agent.id, cs.x, cs.y, targetX, targetY, dt,
+            isIdle ? roomBounds : undefined,
+          );
           cs.x = updatedPos.x;
           cs.y = updatedPos.y;
 
