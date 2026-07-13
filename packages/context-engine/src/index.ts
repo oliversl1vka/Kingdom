@@ -1,0 +1,15 @@
+export * from './types.js';
+export { defaultContextDbPath, openContextDatabase, openContextDatabaseForPath, closeContextDatabase } from './db.js';
+export { applyContextSchema, CONTEXT_SCHEMA_SQL, CONTEXT_SCHEMA_VERSION } from './schema.js';
+export { shouldIndexPath } from './ignore-rules.js';
+export { sha256Text } from './hashing.js';
+export { detectLanguage, isSupportedTextPath, isTypeScriptLike } from './language.js';
+export { normalizeRootPath, normalizeWorkspaceRelativePath, toPosixPath, slugFromRoot } from './path-utils.js';
+export { listIndexableFiles, scanProjectFiles } from './scanner.js';
+export { indexContextProject } from './indexer.js';
+export { getContextStatus } from './status.js';
+export { repairContextIndex } from './repair.js';
+export { parseContextQuery, tokenizeForSearch, buildFtsQuery } from './search/query-parser.js';
+export { searchContext } from './search/fts.js';
+export { expandGraphNeighbors } from './graph/expansion.js';
+export { resolveGraphEdges } from './graph/resolver.js';

@@ -1,0 +1,28 @@
+{
+  "name": "@kingdomos/cli",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "kingdom": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc --build"
+  },
+  "dependencies": {
+    "commander": "^14.0.0",
+    "@kingdomos/core": "workspace:*",
+    "@kingdomos/context-engine": "workspace:*",
+    "@kingdomos/token-engine": "workspace:*",
+    "@kingdomos/agents": "workspace:*",
+    "@kingdomos/providers": "workspace:*",
+    "@kingdomos/sentinel": "workspace:*",
+    "@kingdomos/healer": "workspace:*",
+    "@kingdomos/blacksmith": "workspace:*",
+    "@kingdomos/scribe": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  }
+}

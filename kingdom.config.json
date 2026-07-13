@@ -1,0 +1,60 @@
+{
+  "project_name": "KingdomOS",
+  "workspace_path": "./kingdom_workspace",
+  "providers": {
+    "openai": { "endpoint": "https://api.openai.com", "api_key_name": "openai", "priority_order": 1, "enabled": true },
+    "lmstudio": { "endpoint": "http://localhost:1234", "priority_order": 2, "enabled": false },
+    "llamacpp": { "endpoint": "http://localhost:8080", "priority_order": 3, "enabled": false }
+  },
+  "tiers": {
+    "king":       { "model": "gpt-4.1-mini",      "provider": "openai",   "max_retries": 3, "timeout_seconds": 120 },
+    "nobility":   { "model": "gpt-4.1-mini",      "provider": "openai",   "max_retries": 3, "timeout_seconds": 90  },
+    "judge":      { "model": "gpt-4.1-mini",      "provider": "openai",   "max_retries": 3, "timeout_seconds": 90  },
+    "healer":     { "model": "gpt-4.1-mini",      "provider": "openai",   "max_retries": 3, "timeout_seconds": 90  },
+    "knight":     { "model": "gpt-4o-mini",       "provider": "openai",   "max_retries": 3, "timeout_seconds": 120,
+                    "profile": { "task_kind": "implementation", "cost_preference": "cheap", "needs_tool_use": true } },
+    "sentinel":   { "model": "gpt-4o-mini",       "provider": "openai",   "max_retries": 3, "timeout_seconds": 60  },
+    "scribe":     { "model": "gpt-4o-mini",       "provider": "openai",   "max_retries": 3, "timeout_seconds": 60  },
+    "blacksmith": { "model": "gpt-4o-mini",       "provider": "openai",   "max_retries": 3, "timeout_seconds": 90  },
+    "squire":     { "model": "gpt-4o-mini",       "provider": "openai",   "max_retries": 3, "timeout_seconds": 120,
+                    "profile": { "task_kind": "implementation", "cost_preference": "cheap", "needs_tool_use": true } }
+  },
+  "retention": { "log_retention_days": 7, "heartbeat_retention_days": 3 },
+  "token_engine": { "default_safety_margin_percent": 0.12, "max_concurrent_checks": 10 },
+  "tech_stack": {
+    "language": "TypeScript (Node.js, ESM, strict)",
+    "framework": "commander CLI + better-sqlite3",
+    "package_manager": "pnpm (workspaces)",
+    "architecture": "pnpm monorepo; CLI entry at packages/cli/src/index.ts; unified diffs only when editing files"
+  },
+  "validation_command": "pnpm --filter @kingdomos/cli build",
+  "behavioral_probes": [
+    "node packages/cli/dist/index.js status --help",
+    "node packages/cli/dist/index.js doctor --help"
+  ],
+  "escalation_path": { "squire": "knight" },
+  "sentinel": {
+    "stale_threshold_seconds": 120,
+    "stale_threshold_per_tier": { "king": 300, "nobility": 240, "knight": 180, "squire": 300 }
+  },
+  "memory": {
+    "enabled": true,
+    "max_lessons_bytes": 4096,
+    "injection_tiers": ["king", "nobility", "healer"],
+    "max_per_tier": 20
+  },
+  "agentic_dispatch": {
+    "enabled": true,
+    "max_iterations": 8,
+    "link_node_modules": true,
+    "post_merge_validation": true,
+    "worktree_root": ".kingdom-worktrees"
+  },
+  "embeddings": {
+    "enabled": false,
+    "provider": "local",
+    "endpoint": "http://localhost:8080",
+    "model": "nomic-embed-text",
+    "api_key_name": "openai"
+  }
+}

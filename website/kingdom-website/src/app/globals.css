@@ -1,0 +1,546 @@
+@import "tailwindcss";
+
+/* ───────────────────────────────────────────────────────────
+   KingdomOS — dark terminal theme (minimal black & white)
+   Light parchment theme archived at
+   archive/website-light-theme-2026-06-09/
+   ─────────────────────────────────────────────────────────── */
+
+:root {
+  color-scheme: dark;
+  --kd-bg: #0a0a0a; /* page background */
+  --kd-bg-deep: #050505; /* deepest wells */
+  --kd-surface: #111111; /* raised cards / chips */
+  --kd-fg: #e6e6e6; /* primary text */
+  --kd-fg-soft: #9a9a9a; /* secondary text */
+  --kd-fg-faint: #555555; /* tertiary / hints */
+  --kd-hair: #2a2a2a; /* 1px hairline borders */
+  --kd-accent: #ffffff; /* emphasis = brightness, not hue */
+}
+
+html,
+body {
+  background: var(--kd-bg);
+  color: var(--kd-fg);
+}
+
+body {
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Hero layout ─────────────────────────────────────────── */
+.hero-root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 64px 24px 72px;
+  text-align: center;
+  background:
+    radial-gradient(140% 120% at 50% -10%, #121212 0%, transparent 46%),
+    var(--kd-bg);
+  overflow: hidden;
+}
+
+/* ── Eyebrow (GitHub link) ───────────────────────────────── */
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  margin: 0 0 26px;
+  font-family: var(--font-geist-mono), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--kd-fg-faint);
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+.hero-eyebrow:hover {
+  color: var(--kd-fg-soft);
+}
+
+/* ── Title ───────────────────────────────────────────────── */
+.hero-title {
+  margin: 0 0 22px;
+  max-width: none;
+  font-weight: 540;
+  font-size: clamp(28px, 4.2vw, 54px);
+  line-height: 1.08;
+  letter-spacing: -0.022em;
+  text-transform: uppercase;
+  color: var(--kd-fg);
+}
+
+.hero-title-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.hero-title-accent {
+  color: var(--kd-accent);
+  font-weight: 640;
+}
+
+/* ── Subtitle ────────────────────────────────────────────── */
+.hero-subtitle {
+  margin: 0 0 44px;
+  max-width: 28rem;
+  font-size: clamp(13px, 1.25vw, 15px);
+  line-height: 1.6;
+  color: var(--kd-fg-soft);
+}
+
+/* ── Terminal stage (glow behind + clipped panel) ────────── */
+.hero-stage {
+  position: relative;
+  width: min(40vw, 620px);
+}
+
+/* Colour bled behind the panel so the frosted variants visibly refract
+   it. Only rendered when a variant supplies a `glow`. */
+.hero-glow {
+  position: absolute;
+  inset: -16% -10%;
+  z-index: 0;
+  border-radius: 44px;
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.hero-terminal {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 1280 / 720;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--kd-hair);
+  box-shadow:
+    0 40px 80px -42px rgba(0, 0, 0, 0.85),
+    0 8px 24px -16px rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 720px) {
+  .hero-stage {
+    width: 92vw;
+  }
+}
+
+.hero-variant-label {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 40;
+  max-width: min(92vw, 680px);
+  text-align: left;
+  font-family: var(--font-geist-mono), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: var(--kd-fg-soft);
+  background: rgba(10, 10, 10, 0.72);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--kd-hair);
+  border-radius: 14px;
+  padding: 9px 16px;
+  box-shadow: 0 8px 22px -16px rgba(0, 0, 0, 0.8);
+}
+
+/* ── Scroll cue (hero → quickstart) ──────────────────────── */
+.hero-scroll-cue {
+  position: absolute;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--font-geist-mono), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--kd-fg-faint);
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+.hero-scroll-cue span {
+  animation: cue-bob 1.8s ease-in-out infinite;
+}
+.hero-scroll-cue:hover {
+  color: var(--kd-fg-soft);
+}
+@keyframes cue-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+
+/* ───────────────────────────────────────────────────────────
+   Quickstart docs (same-page scroll)
+   Smooth scrolling is owned by Lenis (see SmoothScroll.tsx) — a native
+   `scroll-behavior: smooth` here would fight it on anchor jumps, so it's
+   intentionally omitted.
+   ─────────────────────────────────────────────────────────── */
+
+.docs-root {
+  position: relative;
+  width: 100%;
+  padding: 96px 24px 120px;
+  background: var(--kd-bg-deep);
+  border-top: 1px solid var(--kd-hair);
+}
+/* When the bridge supplies the heading, close the gap so the first step
+   follows the transition's hand-off frame instead of floating below a void. */
+.docs-root--bridged {
+  padding-top: 40px;
+  border-top: none;
+}
+
+.docs-intro {
+  max-width: 760px;
+  margin: 0 auto 8px;
+  text-align: center;
+}
+.docs-eyebrow {
+  margin: 0 0 14px;
+  font-family: var(--font-geist-mono), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--kd-fg-faint);
+}
+.docs-title {
+  margin: 0 0 14px;
+  font-weight: 540;
+  font-size: clamp(24px, 3vw, 36px);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--kd-fg);
+}
+.docs-sub {
+  margin: 0 auto;
+  max-width: 32rem;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--kd-fg-soft);
+}
+
+.docs-sections {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.docs-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 56px;
+  padding: 64px 0;
+  border-bottom: 1px solid var(--kd-hair);
+  scroll-margin-top: 84px;
+}
+.docs-section:last-child {
+  border-bottom: none;
+}
+.docs-section--rev .docs-copy {
+  order: 2;
+}
+.docs-section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.docs-step {
+  font-family: var(--font-geist-mono), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--kd-accent);
+}
+.docs-section-title {
+  margin: 0;
+  font-weight: 560;
+  font-size: clamp(22px, 2.4vw, 30px);
+  letter-spacing: -0.012em;
+  color: var(--kd-fg);
+}
+.docs-section-body {
+  margin: 0 0 24px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--kd-fg-soft);
+}
+.docs-section-body code {
+  font-family: var(--font-geist-mono), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.86em;
+  color: var(--kd-fg);
+  background: rgba(255, 255, 255, 0.07);
+  padding: 1px 6px;
+  border-radius: 5px;
+}
+
+/* Copyable primary command chip */
+.docs-cmd {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+  padding: 12px 18px;
+  background: var(--kd-surface);
+  border: 1px solid var(--kd-hair);
+  border-radius: 10px;
+  box-shadow: 0 12px 30px -26px rgba(0, 0, 0, 0.9);
+  overflow-x: auto;
+}
+.docs-cmd-prompt {
+  color: var(--kd-accent);
+  font-family: var(--font-geist-mono), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 14px;
+  font-weight: 600;
+}
+.docs-cmd code {
+  font-family: var(--font-geist-mono), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 14px;
+  white-space: nowrap;
+  color: #c4c4c4;
+}
+
+/* Animation panel — holds the play-once Remotion composition */
+.docs-anim {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1000 / 660;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--kd-hair);
+  box-shadow:
+    0 30px 64px -42px rgba(0, 0, 0, 0.85),
+    0 8px 22px -16px rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 860px) {
+  .docs-section {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 48px 0;
+  }
+  .docs-section--rev .docs-copy {
+    order: 0;
+  }
+}
+
+.docs-foot {
+  max-width: 1120px;
+  margin: 40px auto 0;
+  text-align: center;
+  font-size: 14px;
+  color: var(--kd-fg-soft);
+}
+.docs-foot a {
+  color: var(--kd-fg);
+  text-decoration: none;
+}
+.docs-foot a:hover {
+  text-decoration: underline;
+}
+
+/* ── Corner badge ────────────────────────────────────────── */
+.hero-badge {
+  position: fixed;
+  left: 22px;
+  bottom: 22px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--kd-fg);
+  color: #0a0a0a;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.8);
+  z-index: 50;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a3a;
+}
+
+/* docs quickstart styles loaded */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE LAYER — additive (branch: website-responsive)
+   ───────────────────────────────────────────────────────────────────────────
+   THE UNBREAKABLE RULE: the desktop v1 (≥1280px) is sacred and must render
+   pixel-identically to tag `website-v1-desktop`. Everything below is therefore
+   scoped to viewports BELOW 1280px, or is a property whose value is provably
+   identical on desktop (e.g. env() insets are 0px there, min-width:0 is a no-op
+   when the column already exceeds its content). Nothing here changes a ≥1280px
+   paint — the Playwright desktop-regression suite enforces ≈0 pixel diff.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── iOS: the hero used `min-height:100vh`, which on mobile Safari resolves to
+   the LARGE (toolbar-hidden) viewport — so the hero overflowed the visible area
+   and the scroll cue fell below the fold (measured on real devices: heroH 851
+   vs visible 659). `dvh` tracks the CURRENT viewport. On desktop dvh == vh, so
+   this is a no-op there (regression baseline unaffected). ───────────────────── */
+.hero-root {
+  min-height: 100dvh;
+}
+
+/* ── iOS safe-area: keep the fixed badge clear of the home indicator + notch.
+   env(...) is 0px on desktop and non-notched devices, so this is a no-op there
+   (calc(22px + 0px) = 22px — byte-identical paint). ───────────────────────── */
+.hero-badge {
+  left: calc(22px + env(safe-area-inset-left, 0px));
+  bottom: calc(22px + env(safe-area-inset-bottom, 0px));
+}
+
+/* ── Horizontal-overflow fix (root cause of mobile h-scroll). ───────────────
+   The docs grid items default to min-width:auto (= min-content), so the
+   `white-space:nowrap` command chip forced the whole section wider than narrow
+   viewports. Letting the items shrink lets the chip scroll internally instead.
+   No-op ≥1280: the column (≈532px) already exceeds the chip's min-content. ── */
+.docs-section,
+.docs-copy,
+.docs-anim {
+  min-width: 0;
+}
+/* The command chip is the one allowed internal scroller (terminal-authentic). */
+.docs-cmd {
+  max-width: 100%;
+}
+
+/* ── Hero title: release the desktop nowrap so it can wrap on small screens
+   instead of bleeding past the viewport edges. Desktop keeps its two hand-set
+   lines (rule lives below 1280px). ─────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .hero-title-line {
+    white-space: normal;
+  }
+}
+
+/* ── Enlarge the hero terminal in the tablet / small-laptop band, where the
+   desktop `min(40vw,620px)` renders it uncomfortably small. Upper bound is held
+   at 1199px (NOT 1279) on purpose: WebKit/Firefox resolve media queries against
+   clientWidth, i.e. viewport MINUS the scrollbar, so a `…1279px` rule can fire
+   at a 1280px viewport. The 80px gap guarantees the sacred ≥1280 tier is never
+   touched by any scrollbar width. ──────────────────────────────────────────── */
+@media (min-width: 721px) and (max-width: 1199px) {
+  .hero-stage {
+    width: min(68vw, 660px);
+  }
+}
+
+/* ── Compact hero terminal: the portrait phone canvas. This MUST stay in lock-
+   step with HERO_COMPACT_WIDTH/HEIGHT and COMPACT_QUERY in remotion/theme.ts —
+   the driver picks the 560×720 canvas off the same media query, so the scaled
+   composition exactly fills this aspect with no letterboxing. ──────────────── */
+@media (max-width: 600px) {
+  .hero-terminal {
+    aspect-ratio: 560 / 720;
+  }
+  /* Per-animation portrait aspect on phones (var set per section in Docs.tsx,
+     matching DOC_COMPACT in DocAnim.tsx). Falls back to the base landscape
+     aspect if the var is ever absent. */
+  .docs-anim {
+    aspect-ratio: var(--docs-anim-aspect, 1000 / 660);
+  }
+}
+
+/* ── Widen the docs animations below desktop: collapse to a single column
+   earlier (up to 1024px) so the animation panel — and therefore its scaled
+   text — is far larger than the cramped two-column tablet width. Mirrors the
+   existing ≤860 single-column rule; both only ever apply below 1280px. ─────── */
+@media (max-width: 1024px) {
+  .docs-section {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 52px 0;
+    /* The sticky jump-nav wraps to two rows below desktop — push anchored
+       sections clear of it so #install…#status land in view, not behind it. */
+    scroll-margin-top: 112px;
+  }
+  .docs-section--rev .docs-copy {
+    order: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .docs-section {
+    scroll-margin-top: 24px;
+  }
+}
+
+/* ── Touch targets ≥44px. Scoped to coarse pointers so the (mouse-driven)
+   desktop regression baseline is unaffected; a real touch screen at any width
+   correctly gets larger hit areas. ─────────────────────────────────────────── */
+@media (pointer: coarse) {
+  .hero-eyebrow {
+    min-height: 44px;
+    padding: 4px 0;
+  }
+  .hero-scroll-cue {
+    min-height: 44px;
+    padding: 10px 14px;
+    /* keep it centered after the padding is added */
+    transform: translateX(-50%);
+  }
+  .docs-foot a {
+    display: inline-block;
+    padding: 8px 0;
+  }
+}
+
+/* ── Phone polish: tighten section rhythm and let the command chip breathe.
+   Strictly ≤520px (phones) — never touches tablet or desktop. ──────────────── */
+@media (max-width: 520px) {
+  .hero-root {
+    padding: 56px 18px 64px;
+  }
+  .docs-root {
+    padding: 72px 18px 96px;
+  }
+  .docs-root--bridged {
+    padding-top: 32px;
+  }
+  .docs-cmd {
+    padding: 11px 14px;
+  }
+  .docs-cmd code,
+  .docs-cmd-prompt {
+    font-size: 13px;
+  }
+  .docs-section-body {
+    font-size: 15px;
+  }
+}
+

@@ -1,0 +1,15 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/core" },
+    { "path": "packages/context-engine" },
+    { "path": "packages/cli" },
+    { "path": "packages/token-engine" },
+    { "path": "packages/providers" },
+    { "path": "packages/agents" },
+    { "path": "packages/sentinel" },
+    { "path": "packages/healer" },
+    { "path": "packages/blacksmith" },
+    { "path": "packages/scribe" }
+  ]
+}

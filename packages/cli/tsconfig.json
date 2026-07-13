@@ -1,0 +1,20 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "include": ["src"],
+  "references": [
+    { "path": "../core" },
+    { "path": "../context-engine" },
+    { "path": "../token-engine" },
+    { "path": "../agents" },
+    { "path": "../providers" },
+    { "path": "../sentinel" },
+    { "path": "../healer" },
+    { "path": "../blacksmith" },
+    { "path": "../scribe" }
+  ]
+}

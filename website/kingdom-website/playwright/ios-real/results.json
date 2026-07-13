@@ -1,0 +1,66 @@
+[
+  {
+    "device": "iPhone 15 / iOS 17",
+    "noHScroll": true,
+    "badge": {
+      "left": 22,
+      "bottomGap": 22,
+      "onScreen": true
+    },
+    "dvh": {
+      "heroH": 851,
+      "innerH": 659,
+      "ratio": 1.291
+    },
+    "bridgePins": [
+      {
+        "frac": 0.2,
+        "top": 0,
+        "h": 659
+      },
+      {
+        "frac": 0.5,
+        "top": 0,
+        "h": 659
+      },
+      {
+        "frac": 0.8,
+        "top": 0,
+        "h": 659
+      }
+    ],
+    "bridgePinned": true
+  },
+  {
+    "device": "iPhone SE 2022 / iOS 15",
+    "noHScroll": true,
+    "badge": {
+      "left": 22,
+      "bottomGap": 22,
+      "onScreen": true
+    },
+    "dvh": {
+      "heroH": 830,
+      "innerH": 548,
+      "ratio": 1.514
+    },
+    "bridgePins": [
+      {
+        "frac": 0.2,
+        "top": 0,
+        "h": 548
+      },
+      {
+        "frac": 0.5,
+        "top": 0,
+        "h": 548
+      },
+      {
+        "frac": 0.8,
+        "top": 0,
+        "h": 548
+      }
+    ],
+    "bridgePinned": true
+  }
+]

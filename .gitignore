@@ -1,0 +1,74 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.enc
+
+# Database
+*.db
+*.db-wal
+*.db-shm
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# IDE (keep .vscode/settings.json)
+.idea/
+*.swp
+*.swo
+
+# Coverage & test outputs
+coverage/
+.vitest/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Backup files
+*.bak
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Runtime artifacts (generated at runtime, never committed)
+kingdom/results/
+RUN_SUMMARY.md
+kingdom/*.txt
+kingdom_workspace/
+memory/INDEX.md
+memory/**/lessons.md
+
+# Internal review artifacts
+.review-findings/
+
+# Developer tool configs (personal, not project)
+.mcp.json
+kingdom.temp-fork.config.json
+
+# Claude Code (keep project commands, ignore personal settings)
+.claude/settings*
+.claude/scheduled_tasks*
+.claude/worktrees/
+
+# PHASE5: per-job isolated agentic worktrees (throwaway).
+.kingdom-worktrees/
+
+# Legacy asset intermediates
+sprite-preview.bmp
+.credentials.enc
+assets/terminal-portraits/production_images/
+tools/

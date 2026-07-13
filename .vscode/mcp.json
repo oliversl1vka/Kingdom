@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "optiq": {
+      "type": "stdio",
+      "command": "optiq",
+      "args": ["mcp"]
+    }
+  }
+}
