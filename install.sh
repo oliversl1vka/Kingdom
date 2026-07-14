@@ -34,6 +34,9 @@ if command -v pnpm >/dev/null 2>&1; then
   pnpm_run() { pnpm "$@"; }
 elif command -v corepack >/dev/null 2>&1; then
   info "pnpm not found — using corepack to provision it."
+  # Never block on corepack's interactive "download this package manager?" prompt
+  # when we're running non-interactively (e.g. piped from `curl … | sh`).
+  export COREPACK_ENABLE_DOWNLOAD_PROMPT=0
   pnpm_run() { corepack pnpm "$@"; }
 else
   err "pnpm not found and corepack is unavailable. Install pnpm (https://pnpm.io/installation) and re-run."
