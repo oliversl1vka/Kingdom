@@ -63,14 +63,14 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
         // Phones converge a little faster so the whole page stays closer to
         // the finger/momentum position instead of visibly trailing it. The
         // approved desktop glide remains exactly 0.09.
-        lerp: reduce ? 1 : phoneTouch ? 0.12 : 0.09,
+        lerp: reduce ? 1 : phoneTouch ? 0.1 : 0.09,
         smoothWheel: !reduce,
         // Native inertial touch scroll and Lenis' animation clock otherwise
         // advance on different ticks, which makes the scroll-scrubbed green
         // scanline trail/jump during an iPhone swipe. Synchronize touch only
         // on phones; mouse/trackpad desktop behavior stays exactly unchanged.
         syncTouch: phoneTouch && !reduce,
-        syncTouchLerp: phoneTouch ? 0.12 : 0.09,
+        syncTouchLerp: phoneTouch ? 0.1 : 0.09,
         touchInertiaExponent: 1.7,
         // Shorten the distance produced by each phone swipe so the long-form
         // transition feels deliberate and takes more gestures to traverse.
