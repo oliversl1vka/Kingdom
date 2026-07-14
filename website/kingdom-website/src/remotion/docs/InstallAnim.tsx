@@ -6,17 +6,17 @@ export const INSTALL_FRAMES = 132;
 
 // Real-ish install steps that tick off in sequence.
 const STEPS = [
-  "Fetching kingdomos",
-  "Verifying signature",
-  "Installing the CLI",
-  "Linking kingdom → /usr/local/bin",
+  "Cloning the repo",
+  "Installing dependencies",
+  "Building the CLI",
+  "Linking kingdom → ~/.local/bin",
 ];
 // On the narrow phone canvas the last step is shortened so it never wraps.
 const STEPS_COMPACT = [
-  "Fetching kingdomos",
-  "Verifying signature",
-  "Installing the CLI",
-  "Linking → /usr/local/bin",
+  "Cloning the repo",
+  "Installing deps",
+  "Building the CLI",
+  "Linking → ~/.local/bin",
 ];
 
 // Install → a step checklist ticks through while a progress bar fills to 100%,

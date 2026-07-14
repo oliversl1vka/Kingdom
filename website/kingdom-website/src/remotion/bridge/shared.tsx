@@ -49,11 +49,11 @@ export interface Step {
 }
 
 export const STEPS: Step[] = [
-  { n: "01", id: "install", title: "Install", cmd: "kingdom install", gloss: "one line, global CLI" },
+  { n: "01", id: "install", title: "Install", cmd: "curl -fsSL … | sh", gloss: "one line, global CLI" },
   { n: "02", id: "setup", title: "Set up a kingdom", cmd: "kingdom setup", gloss: "scaffold the court" },
   { n: "03", id: "decree", title: "Decree an objective", cmd: "kingdom decree", gloss: "state the goal" },
   { n: "04", id: "summon", title: "Summon the court", cmd: "kingdom summon", gloss: "agents go to work" },
-  { n: "05", id: "status", title: "Watch progress", cmd: "kingdom status", gloss: "live dashboard" },
+  { n: "05", id: "status", title: "Watch progress", cmd: "kingdom status", gloss: "status snapshot" },
 ];
 
 // ── Tiny math helpers ──────────────────────────────────────────

@@ -153,12 +153,26 @@ export function TerminalStage({
     if (!mounted) return;
     let raf = 0;
     let anchor = performance.now();
+    let lastNow = -Infinity; // previous tick's timestamp — detects rAF suspension
     let current = 0; // live frame, tracked locally (no stale closure)
     let done = false; // latched true once the sequence has played out
     const lastFrame = HERO_DURATION_IN_FRAMES - 1;
 
     const tick = (now: number) => {
       if (done) return;
+      // A big gap since the previous tick means rAF was SUSPENDED — browsers
+      // stop rAF entirely while a page is hidden (tab switch, app switch,
+      // phone lock), so the paused-branch re-anchoring below never got to
+      // run. Without this guard the first tick after returning computes the
+      // frame from the stale anchor, leaps past the end, and latches `done`:
+      // the viewer comes back to a permanently finished, motionless terminal.
+      // Re-anchor and RESUME from the frozen frame instead.
+      // (Also covers a page that LOADS hidden: the first tick re-anchors,
+      // so the clock starts when the viewer actually arrives.)
+      if (now - lastNow > 1000) {
+        anchor = now - (current / FPS) * 1000;
+      }
+      lastNow = now;
       if (playingRef.current) {
         const f = Math.floor(((now - anchor) / 1000) * FPS);
         // Play through exactly once, then freeze on the final frame — no

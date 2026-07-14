@@ -37,8 +37,21 @@ function usePrefersReducedMotion(): boolean {
   return reduce;
 }
 
+function usePhoneTouch(): boolean {
+  const [phoneTouch, setPhoneTouch] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 600px) and (pointer: coarse)");
+    const sync = () => setPhoneTouch(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+  return phoneTouch;
+}
+
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
   const reduce = usePrefersReducedMotion();
+  const phoneTouch = usePhoneTouch();
 
   return (
     <ReactLenis
@@ -47,9 +60,22 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
         // lerp is the per-frame easing factor — lower = more glide/weight.
         // ~0.09 reads buttery without feeling laggy. Disabled under reduced
         // motion so wheel/touch fall back to native scroll.
-        lerp: reduce ? 1 : 0.09,
+        // Phones converge a little faster so the whole page stays closer to
+        // the finger/momentum position instead of visibly trailing it. The
+        // approved desktop glide remains exactly 0.09.
+        lerp: reduce ? 1 : phoneTouch ? 0.12 : 0.09,
         smoothWheel: !reduce,
-        syncTouch: false,
+        // Native inertial touch scroll and Lenis' animation clock otherwise
+        // advance on different ticks, which makes the scroll-scrubbed green
+        // scanline trail/jump during an iPhone swipe. Synchronize touch only
+        // on phones; mouse/trackpad desktop behavior stays exactly unchanged.
+        syncTouch: phoneTouch && !reduce,
+        syncTouchLerp: phoneTouch ? 0.12 : 0.09,
+        touchInertiaExponent: 1.7,
+        // Shorten the distance produced by each phone swipe so the long-form
+        // transition feels deliberate and takes more gestures to traverse.
+        // Non-phone inputs retain Lenis' default multiplier of 1.
+        touchMultiplier: phoneTouch ? 0.8 : 1,
         wheelMultiplier: 1,
         // In-page anchor links (the "Quickstart ↓" cue, docs nav) glide
         // through Lenis instead of doing a native jump that fights it.

@@ -473,6 +473,12 @@ body {
      aspect if the var is ever absent. */
   .docs-anim {
     aspect-ratio: var(--docs-anim-aspect, 1000 / 660);
+    /* The compositions update many DOM/SVG styles per frame. Keep those
+       changes inside the panel's own paint layer on mobile Safari instead of
+       invalidating the surrounding, very long Quickstart page. */
+    contain: layout paint style;
+    isolation: isolate;
+    transform: translateZ(0);
   }
 }
 
@@ -543,4 +549,3 @@ body {
     font-size: 15px;
   }
 }
-

@@ -18,7 +18,7 @@ const SECTIONS: DocSection[] = [
     id: "install",
     step: "01",
     title: "Install",
-    command: "curl -fsSL https://kingdomos.dev/install | sh",
+    command: "curl -fsSL https://raw.githubusercontent.com/oliversl1vka/Kingdom/main/install.sh | sh",
     body: (
       <>
         One line installs the <code>kingdom</code> CLI globally. Verify it with{" "}
@@ -34,7 +34,7 @@ const SECTIONS: DocSection[] = [
     body: (
       <>
         Scaffolds a <code>kingdom/</code> directory — config, the SQLite ledger,
-        and the agent court — inside your project. Idempotent; re-run with{" "}
+        and the agent court — inside your project. Re-run with{" "}
         <code>--force</code> to re-scaffold.
       </>
     ),
@@ -72,7 +72,7 @@ const SECTIONS: DocSection[] = [
     command: "kingdom status",
     body: (
       <>
-        A live dashboard of tasks, jobs, token spend, and the current objective.
+        A snapshot of tasks, jobs, token spend, and the current objective.
         Run it any time while the court is at work.
       </>
     ),

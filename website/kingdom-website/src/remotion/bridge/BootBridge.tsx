@@ -4,7 +4,7 @@
 // BOOT — the hero terminal reboots into the quickstart.
 //
 // The session continues from the hero's last lines, a fresh prompt types
-// `kingdom quickstart`, a dim-green scanline wipes the screen clear, the five
+// `kingdom --help`, a dim-green scanline wipes the screen clear, the five
 // steps print as a manifest, and the quickstart heading rises above the card
 // to hand off to the docs below. Continuity: the same terminal becomes your
 // guide. Frame-driven; reads the scrubbed frame from <BridgeStage>.
@@ -57,9 +57,12 @@ export function BootBridge() {
   const compact = useMediaQuery(COMPACT_QUERY);
 
   // Old session fades as the screen is wiped; manifest + heading settle in.
-  const clear = ramp(frame, 32, 16); // 0→1 screen-clear progress
+  // A touch swipe carries more momentum than a desktop wheel gesture, so the
+  // scanline gets 15% more travel time on phones. Desktop keeps its approved
+  // 16-frame sweep exactly.
+  const clear = ramp(frame, 32, compact ? 16 * 1.15 : 16);
   const oldOpacity = clamp01(1 - clear);
-  const cmd = typed("kingdom quickstart", frame - 6); // responds immediately
+  const cmd = typed("kingdom --help", frame - 6); // responds immediately
 
   const headRise = fadeUp(frame, 118, 28, 22);
   const cardRecede = clamp01(ramp(frame, 118, 38)); // 0→1

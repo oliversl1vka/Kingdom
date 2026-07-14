@@ -3,7 +3,7 @@
 //
 // Usage:
 //   node scripts/generate_portraits.mjs --tier judge
-//   node scripts/generate_portraits.mjs --tier scribe,sentinel,knight,king
+//   node scripts/generate_portraits.mjs --tier scribe,sentinel,knight,king,squire
 //   node scripts/generate_portraits.mjs --all
 //
 // Reads OPENROUTER_API_KEY from .env. Uses the 3 successful portraits
@@ -85,6 +85,10 @@ const TIER_DESCRIPTIONS = {
   king: {
     role: 'King',
     description: `PORTRAIT ORIENTATION (taller than wide, about 2:3 ratio). A weathered sovereign in late middle age, 55-60 years old. Greying temples with dark hair, short greying beard, strong nose, deeply furrowed brow. He wears heavy gold signet rings on his clasped hands which rest near his chest. Crimson and sable robes visible at the shoulders. Tired but commanding eyes — the weight of the kingdom visible in his gaze. Golden hour sunlight from the upper-right bathes one side of his face warmly. His eyes and full facial expression are clearly visible and well-lit. MID-BRIGHTNESS — golden light ensures his face is well-exposed, particularly the eyes. Dark atmospheric background.`,
+  },
+  squire: {
+    role: 'Squire',
+    description: `PORTRAIT ORIENTATION (taller than wide, about 2:3 ratio). A young apprentice, late teens to early 20s, with bright eager eyes and a slight, hopeful smile. Sandy brown hair, slightly tousled. Soft, unweathered skin — this is someone still learning, not yet hardened by battle. He wears a simple linen tunic and a worn leather vest, practical clothes for long hours of study and practice. A leather-bound codex and ink-stained quill are visible at the edge of the frame, hinting at his scholarly focus on code and precision work. Warm, gentle light from a single candle or oil lamp illuminates his face from the front-left, giving an intimate, focused atmosphere appropriate for a local model who works quietly on small tasks. His face is fully visible and well-lit. MID-BRIGHTNESS. 80s dark fantasy OIL PAINTING style — must match the reference portraits in palette and brushwork, but the mood should be warmer and more intimate, befitting a dedicated student working by lamplight.`,
   },
 };
 
@@ -323,7 +327,7 @@ async function main() {
     if (args[i] === '--tier' || args[i] === '-t') {
       tiers.push(...(args[++i] ?? '').split(','));
     } else if (args[i] === '--all') {
-      tiers.push('judge', 'scribe', 'sentinel', 'knight', 'king');
+      tiers.push('judge', 'scribe', 'sentinel', 'knight', 'king', 'squire');
     } else if (args[i] === '--model' || args[i] === '-m') {
       // handled below
     }
@@ -333,7 +337,7 @@ async function main() {
     console.error('Usage: generate_portraits.mjs --tier judge,scribe,sentinel,knight,king');
     console.error('       generate_portraits.mjs --all');
     console.error('');
-    console.error('Available tiers: judge, scribe, sentinel, knight, king');
+    console.error('Available tiers: judge, scribe, sentinel, knight, king, squire');
     process.exit(1);
   }
 

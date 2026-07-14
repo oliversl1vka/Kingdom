@@ -84,12 +84,28 @@ export function AnimStage({
     if (!mounted) return;
     let raf = 0;
     let anchor = performance.now();
+    let lastNow = -Infinity; // previous tick's timestamp — detects rAF suspension
+    let lastRenderAt = -Infinity;
     let current = 0;
     let done = false;
     const lastFrame = durationInFrames - 1;
+    // Mobile Safari has substantially less headroom for these DOM/SVG
+    // compositions. Keep their 30fps timeline (and therefore all timings), but
+    // present it at a stable 24fps on phones by skipping redundant React
+    // renders. Desktop retains every 30fps frame.
+    const minRenderInterval = compact ? 1000 / 24 : 0;
 
     const tick = (now: number) => {
       if (done) return;
+      // rAF stops entirely while the page is hidden (tab/app switch, phone
+      // lock), so the paused-branch re-anchoring below can't run during the
+      // gap. Without this guard the first tick after returning fast-forwards
+      // through the hidden time, leaps past the end, and latches `done` —
+      // the animation appears permanently finished. Resume instead.
+      if (now - lastNow > 1000) {
+        anchor = now - (current / FPS) * 1000;
+      }
+      lastNow = now;
       if (playingRef.current) {
         const f = Math.floor(((now - anchor) / 1000) * FPS);
         if (f >= lastFrame) {
@@ -99,7 +115,10 @@ export function AnimStage({
           return;
         }
         current = f;
-        setFrame((prev) => (prev === f ? prev : f));
+        if (now - lastRenderAt >= minRenderInterval) {
+          lastRenderAt = now;
+          setFrame((prev) => (prev === f ? prev : f));
+        }
       } else {
         anchor = now - (current / FPS) * 1000;
       }
@@ -107,7 +126,7 @@ export function AnimStage({
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [mounted, durationInFrames]);
+  }, [mounted, durationInFrames, compact]);
 
   return (
     <div

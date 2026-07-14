@@ -31,6 +31,7 @@ interface TerminalLine {
   prompt: string;
   text: string;
   kind: LineKind;
+  wrap?: boolean; // let a long line column-wrap instead of clipping
 }
 
 function lineFrames(line: TerminalLine): number {
@@ -38,10 +39,15 @@ function lineFrames(line: TerminalLine): number {
   return framesToType(line.prompt + line.text);
 }
 
+// Install command — the real one-liner (raw GitHub URL). It's long, so it
+// column-wraps like a real terminal instead of clipping (see TerminalLine.wrap).
+const FULL_INSTALL =
+  "curl -fsSL https://raw.githubusercontent.com/oliversl1vka/Kingdom/main/install.sh | sh";
+
 // The REAL onboarding flow, mirroring the actual CLI commands & wording.
 const SEQUENCE: TerminalLine[] = [
-  { prompt: "$ ", text: "curl -fsSL https://kingdomos.dev/install | sh", kind: "cmd" },
-  { prompt: "  ", text: "fetching kingdomos", kind: "progress" },
+  { prompt: "$ ", text: FULL_INSTALL, kind: "cmd", wrap: true },
+  { prompt: "  ", text: "cloning the repo", kind: "progress" },
   { prompt: "  ", text: "✓ kingdom v0.1.0 ready", kind: "ok" },
   { prompt: "$ ", text: "kingdom setup camelot", kind: "cmd" },
   { prompt: "  ", text: "✓ Kingdom 'camelot' established", kind: "ok" },
@@ -52,12 +58,11 @@ const SEQUENCE: TerminalLine[] = [
   { prompt: "  ", text: "✓ 3 epics · 11 tasks queued", kind: "ok" },
 ];
 
-// Compact (phone) flow — the SAME story with short lines that fit the portrait
-// canvas at legible type. Lines stay ≤ ~33 chars so nothing wraps/overflows.
-// The closing line matches the desktop flow so completion detection is shared.
+// Compact (phone) flow — the SAME story with short lines. The install line
+// column-wraps at the shared size, same as every other row.
 const COMPACT_SEQUENCE: TerminalLine[] = [
-  { prompt: "$ ", text: "kingdom install", kind: "cmd" },
-  { prompt: "  ", text: "fetching", kind: "progress" },
+  { prompt: "$ ", text: FULL_INSTALL, kind: "cmd", wrap: true },
+  { prompt: "  ", text: "cloning", kind: "progress" },
   { prompt: "  ", text: "✓ kingdom v0.1.0 ready", kind: "ok" },
   { prompt: "$ ", text: "kingdom setup camelot", kind: "cmd" },
   { prompt: "  ", text: "✓ 'camelot' established", kind: "ok" },
@@ -419,7 +424,8 @@ const TerminalLineRow: React.FC<{
         fontFamily: MONO,
         fontSize: font,
         lineHeight: 1.72,
-        whiteSpace: "pre",
+        whiteSpace: line.wrap ? "pre-wrap" : "pre",
+        wordBreak: line.wrap ? "break-all" : "normal",
         color: bodyColor,
         fontWeight: weight,
       }}
